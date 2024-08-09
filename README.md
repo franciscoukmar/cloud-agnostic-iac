@@ -1,4 +1,4 @@
-# Cloud-Agnostic Infrastructure as Code
+# Cloud-Agnostic IaC
 
 Este proyecto utiliza Terraform para desplegar una infraestructura básica agnóstica al proveedor de nube.
 
