@@ -3,6 +3,11 @@ variable "environment" {
   type        = string
 }
 
+variable "cloud_provider" {
+  description = "Cloud Provider to deploy to (aws, azure, google)"
+  type        = string
+}
+
 variable "azure_location" {
   description = "La ubicación en Azure donde se desplegará la red."
   type        = string

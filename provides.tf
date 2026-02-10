@@ -21,7 +21,7 @@ provider "aws" {
 }
 
 provider "azurerm" {
-  features = {}
+  features {}
 }
 
 provider "google" {

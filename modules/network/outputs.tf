@@ -1,14 +1,24 @@
-output "network_id" {
-  description = "El ID de la red creada"
-  value       = aws_vpc.this.id
+output "aws_vpc_id" {
+  description = "AWS VPC ID"
+  value       = try(aws_vpc.this[0].id, "")
 }
 
-output "vnet_name" {
-  description = "El nombre de la red virtual de Azure"
-  value       = azurerm_virtual_network.this.name
+output "aws_subnet_id" {
+  description = "AWS Subnet ID"
+  value       = try(aws_subnet.this[0].id, "")
+}
+
+output "azure_vnet_name" {
+  description = "Azure VNet Name"
+  value       = try(azurerm_virtual_network.this[0].name, "")
+}
+
+output "azure_subnet_id" {
+  description = "Azure Subnet ID"
+  value       = try(azurerm_subnet.this[0].id, "")
 }
 
 output "gcp_network_name" {
-  description = "El nombre de la red de Google Compute"
-  value       = google_compute_network.this.name
+  description = "GCP Network Name"
+  value       = try(google_compute_network.this[0].name, "")
 }

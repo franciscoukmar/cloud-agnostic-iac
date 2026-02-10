@@ -1,3 +1,14 @@
+variable "cloud_provider" {
+  description = "Cloud Provider to deploy to (aws, azure, google)"
+  type        = string
+}
+
+variable "admin_password" {
+  description = "Admin password for VMs (sensitive)"
+  type        = string
+  sensitive   = true
+}
+
 variable "environment" {
   description = "El entorno donde se desplegará la máquina virtual (ej. dev, prod)."
   type        = string
@@ -6,6 +17,7 @@ variable "environment" {
 variable "aws_ami" {
   description = "La AMI de AWS para la instancia EC2."
   type        = string
+  default     = "ami-0c55b159cbfafe1f0" # Example AMI, should be passed from root
 }
 
 variable "aws_instance_type" {
@@ -41,4 +53,22 @@ variable "gcp_zone" {
   description = "La zona en Google Cloud donde se desplegará la máquina."
   type        = string
   default     = "us-central1-a"
+}
+
+variable "gcp_network_name" {
+  description = "Nombre de la red de GCP creada en el módulo network"
+  type        = string
+  default     = ""
+}
+
+variable "subnet_id_aws" {
+  description = "ID de la Subnet de AWS (necesitas crear una subnet en el módulo network primero)"
+  type        = string
+  default     = "" 
+}
+
+variable "azure_subnet_id" {
+  description = "ID de la Subnet de Azure"
+  type        = string
+  default     = ""
 }

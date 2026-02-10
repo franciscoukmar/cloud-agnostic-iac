@@ -1,14 +1,43 @@
-# Módulo de Máquinas Virtuales
+# Virtual Machine Module
 
-Este módulo crea máquinas virtuales en AWS, Azure y Google Cloud.
+This module creates a compute instance (VM) in the selected cloud provider (AWS, Azure, or GCP).
+
+## Usage
+
+```hcl
+module "vm" {
+  source = "./modules/vm"
+
+  environment    = "dev"
+  cloud_provider = "aws"
+  admin_password = "SecurePassword123!"
+  
+  # AWS vars
+  aws_ami           = "ami-..."
+  aws_instance_type = "t2.micro"
+  subnet_id_aws     = module.network.aws_subnet_id
+}
+```
 
 ## Variables
 
-- `environment`: El entorno donde se desplegará la máquina virtual (ej. dev, prod).
-- `aws_ami`: La AMI de AWS para la instancia EC2.
-- `aws_instance_type`: El tipo de instancia de AWS (ej. t2.micro).
-- `azure_location`: La ubicación en Azure donde se desplegará la máquina virtual.
-- `azure_resource_group`: El nombre del grupo de recursos de Azure.
-- `azure_vm_size`: El tamaño de la máquina virtual en Azure (ej. Standard_B1s).
-- `gcp_machine_type`: El tipo de máquina en Google Cloud (ej. f1-micro).
-- `gcp_zone`: La zona en Google Cloud donde
+### General
+- `cloud_provider`: The target cloud provider ("aws", "azure", "google").
+- `environment`: The environment name (e.g., dev, prod).
+- `admin_password`: Administrator password for the VM (sensitive).
+
+### AWS
+- `aws_ami`: AMI ID for the EC2 instance.
+- `aws_instance_type`: Instance type (e.g., t2.micro).
+- `subnet_id_aws`: VPC Subnet ID.
+
+### Azure
+- `azure_location`: Azure location.
+- `azure_resource_group`: Resource Group name.
+- `azure_vm_size`: VM Size (e.g., Standard_B1s).
+- `azure_subnet_id`: VNet Subnet ID.
+
+### Google Cloud
+- `gcp_machine_type`: Machine type (e.g., f1-micro).
+- `gcp_zone`: GCP Zone (e.g., us-central1-a).
+- `gcp_network_name`: Network name to attach to.
